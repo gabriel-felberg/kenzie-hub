@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import "../../App.css";
 
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -9,11 +8,10 @@ import { FlexHeader } from "./style";
 import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
-import "./style.css";
 
 import { toast, ToastContainer } from "react-toastify";
 
-import Logo from "../../img"
+import Logo from "../../img/Logo.svg"
 
 function Login() {
   const history = useHistory();
@@ -34,20 +32,24 @@ function Login() {
   const onSubmitFunction = (data) => {
     delete data.twopassword;
     axios
-      .post("https://kenzieshop.herokuapp.com/users/", data)
-      .then((response) => console.log(response));
-    toast.success("Login Concluído!", {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-    setTimeout(() => {
-      history.push(`/HomePage`);
-    }, 3000)
+      .post("https://kenziehub.herokuapp.com/sessions/", data)
+      .then((response) => {console.log(response)
+        localStorage.setItem("token",response.data.token)
+        localStorage.removeItem("token1")
+        setTimeout(() => {
+          history.push(`/HomePage`);
+        }, 3000)
+        toast.success("Login Concluído!", {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+        
+      })
     .catch((error) => {
       console.log(error);
       toast.error("Login incorreto!", {
@@ -85,7 +87,7 @@ function Login() {
           </div>
         </form>
         <span>não possui uma conta?</span>
-        <button onClick={history.push(`/Cadastro`)}>Cadastre-se</button>
+        <button onClick={()=>history.push(`/Cadastro`)}>Cadastre-se</button>
         <ToastContainer
           position="bottom-center"
           autoClose={3000}

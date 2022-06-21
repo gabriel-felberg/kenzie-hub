@@ -6,13 +6,13 @@ import Login from "../pages/Login";
 function Routers() {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path={`/`}>
         <Login />
       </Route>
-      <Route path={`/cadastro`}>
+      <Route path={"/Cadastro"}>
         <Cadastro />
       </Route>
-      <Route path={`/homePage`}>
+      <Route path={`/HomePage`}>
         <HomePage />
       </Route>
     </Switch>

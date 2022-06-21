@@ -8,10 +8,11 @@ import { useHistory } from "react-router-dom";
 import { FlexHeader } from "./style";
 import axios from "axios";
 
-import 'react-toastify/dist/ReactToastify.css';
-import "./style.css"
+import "react-toastify/dist/ReactToastify.css";
 
-import { toast, ToastContainer } from 'react-toastify';
+import Logo from "../../img/Logo.svg";
+
+import { toast, ToastContainer } from "react-toastify";
 
 function Cadastro() {
   const history = useHistory();
@@ -19,22 +20,14 @@ function Cadastro() {
   const formSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     name: yup.string().required("Nome obrigatório"),
-    password: yup
-      .string()
-      .required("Senha obrigatório")
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])(?:([0-9a-zA-Z$*&@#])(?!\1)){8,}$/,
-        "Senha Ivalida"
-      ),
+    password: yup.string().required("Senha obrigatório"),
+
     twopassword: yup
       .string()
       .required("Senha obrigatório")
       .oneOf([yup.ref("password"), null], "As Senhas são Diferentes"),
     bio: yup.string().required("biografia obrigatória"),
-    contact: yup
-      .string()
-      .required("Telefone obrigatório")
-      .matches(/^\([0-9]{2}\) [0-9]{5}-[0-9]{4}$/, "Telefone Inválido"),
+    contact: yup.string().required("Telefone obrigatório"),
   });
 
   const {
@@ -47,37 +40,43 @@ function Cadastro() {
 
   const onSubmitFunction = (data) => {
     delete data.twopassword;
+    console.log(data)
     axios
-      .post("https://kenzieshop.herokuapp.com/users/", data)
-      .then((response) => console.log(response));
-      toast.success('Cadastro Concluído!', {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      .post("https://kenziehub.herokuapp.com/users/", data)
+      .then((response) => {
+        console.log(response);
+        history.push(`/`);
+        toast.success("Cadastro Concluído!", {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
-      .catch( (error) => {
+      .catch((error) => {
         console.log(error);
-        toast.error('Cadastro incorreto!', {
-            position: "bottom-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });
-      })
-    history.push(`/`);
+        toast.error("Cadastro incorreto!", {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
-
 
   return (
     <>
-      <FlexHeader />
+      <FlexHeader>
+        <img src={Logo} alt="Logo" />
+
+        <button onClick={() => history.push("/")}>Voltar</button>
+      </FlexHeader>
       <div className="container">
         <h3>Crie sua conta</h3>
         <span>Rápido e grátis, vamos nessa</span>
@@ -116,12 +115,12 @@ function Cadastro() {
           <h5>Contato</h5>
           <input
             placeholder="Opção de contato"
-            {...register("course_module")}
+            {...register("contact")}
           />
           {errors.contact?.message}
           <h5>Selecionar módulo</h5>
           <div className="tipo">
-            <select {...register("contact")}>
+            <select {...register("course_module")}>
               <option value={"Primeiro módulo (Introdução ao Frontend)"}>
                 Primeiro módulo
               </option>
