@@ -13,7 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import Logo from "../../img/Logo.svg"
 
-function Login() {
+function Login({setData}) {
   const history = useHistory();
 
   const formSchema = yup.object().shape({
@@ -33,9 +33,11 @@ function Login() {
     delete data.twopassword;
     axios
       .post("https://kenziehub.herokuapp.com/sessions/", data)
-      .then((response) => {console.log(response)
+      .then((response) => {setData(response)
+        console.log(response)
         localStorage.setItem("token",response.data.token)
-        localStorage.removeItem("token1")
+        localStorage.setItem("userId",response.data.user.id)
+        
         setTimeout(() => {
           history.push(`/HomePage`);
         }, 3000)
