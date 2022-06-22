@@ -31,6 +31,8 @@ export const Divflex = styled.div`
 
   margin-bottom: ${(props) => props.mb};
   margin: ${(props) => props.m};
+
+
   @media (min-width: 768px) {
   }
 `;

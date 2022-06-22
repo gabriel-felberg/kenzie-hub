@@ -4,7 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Divflex } from "../../../pages/HomePage/style";
 
-const EditModal = ({closeModal}) => {
+const EditModal = ({ closeModal, personData }) => {
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
   });
@@ -18,42 +18,61 @@ const EditModal = ({closeModal}) => {
   });
 
   const onSubmitFunction = (data) => {
-    console.log(localStorage.getItem("token"));
+    delete data.title
+    console.log(data);
     axios
-      .post("https://kenziehub.herokuapp.com/users/techs", data, {
-        headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+      .put(`https://kenziehub.herokuapp.com/users/techs/${personData.id}`, data, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
         console.log(response);
-        console.log("deu bom")
-        closeModal()
+        console.log("editou");
+        closeModal();
       })
       .catch((error) => {
         console.log(error);
-        console.log("deu ruim")
+        console.log("n editou");
       });
   };
+  function escIten(){
+    console.log(personData);
+    console.log(localStorage.getItem("token"));
+    axios
+      .delete(`https://kenziehub.herokuapp.com/users/techs/:${personData.id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((response) => {
+        console.log(response);
+        console.log("deletou");
+        closeModal();
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("n deletou");
+      });
+  }
   return (
     <Divflex f="column">
       <Divflex>
-        <h1>Cadastrar Tecnologia</h1>
+        <h1>Tecnologia Detalhes</h1>
         <button onClick={() => closeModal()}>X</button>
       </Divflex>
       <Divflex f="column">
         <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-          <h5>Nome</h5>
-          <input placeholder="Tecnologia" {...register("title")} />
+          <h5>Nome do projeto</h5>
+          <input placeholder="Tecnologia" value={`${personData.title}`} {...register("title")} />
           {errors.title?.message}
-          <h5>Selecionar status</h5>
+          <h5>Status</h5>
           <div className="tipo">
-            <select {...register("status")}>
+            <select value={`${personData.type}`}{...register("status")}>
               <option>inciante</option>
               <option>Intermediário</option>
               <option>Avançado</option>
             </select>
           </div>
-          <button type="submit" >Cadastrar Tecnologia</button>
+          <button type="submit">Salvar alterações</button>
         </form>
+        <button onClick={()=> escIten()}>Excluir</button>
       </Divflex>
     </Divflex>
   );

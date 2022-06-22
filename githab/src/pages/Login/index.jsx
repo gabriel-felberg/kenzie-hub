@@ -33,10 +33,11 @@ function Login({setData}) {
     delete data.twopassword;
     axios
       .post("https://kenziehub.herokuapp.com/sessions/", data)
-      .then((response) => {setData(response)
+      .then((response) => {
+        setData(response.data.user)
         console.log(response)
-        localStorage.setItem("token",response.data.token)
-        localStorage.setItem("userId",response.data.user.id)
+        localStorage.setItem("token", JSON.stringify(response.data.token))
+        localStorage.setItem("userId",JSON.stringify(response.data.user.id))
         
         setTimeout(() => {
           history.push(`/HomePage`);

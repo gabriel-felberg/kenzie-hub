@@ -5,8 +5,8 @@ import Cadastro from "../pages/Cadastro";
 import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 
-function Routers({openAddModal, closeModal}) {
-const [objectData, setObjectData] = useState([])
+function Routers({openAddModal, closeModal, objectData, setObjectData}) {
+
   return (
     <Switch>
       <Route exact path={`/`}>
