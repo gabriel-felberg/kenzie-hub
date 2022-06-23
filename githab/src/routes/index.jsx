@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import Cadastro from "../pages/Cadastro";
 
+
 import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 
@@ -30,6 +31,7 @@ function Routers({
           setIdTecnologi={setIdTecnologi}
           idTecnologi={idTecnologi}
         />
+
       </Route>
     </Switch>
   );

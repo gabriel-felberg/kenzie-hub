@@ -1,3 +1,4 @@
+
 import "./App.css";
 import Routers from "./routes";
 import Modal from "react-modal";
@@ -85,7 +86,7 @@ function App() {
           />
         </Modal>
       </div>
-    </div>
+</div>
   );
 }
 

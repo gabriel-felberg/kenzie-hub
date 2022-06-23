@@ -1,3 +1,4 @@
+
 import { useHistory } from "react-router";
 import Card from "../../components/Cards";
 
@@ -102,3 +103,4 @@ const HomePage = ({
 };
 
 export default HomePage;
+
