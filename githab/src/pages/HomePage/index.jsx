@@ -39,8 +39,8 @@ const HomePage = ({
   }
   useEffect(() => {
     setArrayTecnologi(objectData.techs);
-  }, []);
-
+  });
+  
   function esc() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");

@@ -23,6 +23,7 @@ const AddModal = ({
   });
 
   const onSubmitFunction = (data) => {
+
     axios
       .post("https://kenziehub.herokuapp.com/users/techs", data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

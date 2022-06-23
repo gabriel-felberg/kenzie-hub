@@ -1,7 +1,7 @@
 import "./App.css";
 import Routers from "./routes";
 import Modal from "react-modal";
-import { useEffect, useState } from "react";
+import { ffect, useEffect, useState } from "react";
 import AddModal from "./components/Modal/AddMadal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -34,9 +34,8 @@ function App() {
       axios
         .get(`https://kenziehub.herokuapp.com/users/${userId}`)
         .then((response) => {
-          
           setObjectData(response.data);
-          history.push(`/HomePage`);
+
         })
         .catch((error) => {
           console.log(error);
