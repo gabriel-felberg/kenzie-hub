@@ -2,9 +2,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Divflex } from "../../../pages/HomePage/style";
+import { CurrentButton, Divflex, Form } from "./style";
 
-const EditModal = ({ closeModal, personData }) => {
+const EditModal = ({ closeModal, elem }) => {
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
   });
@@ -18,32 +18,30 @@ const EditModal = ({ closeModal, personData }) => {
   });
 
   const onSubmitFunction = (data) => {
-    delete data.title
-    console.log(data);
+    delete data.title;
+    console.log(elem.id);
+
     axios
-      .put(`https://kenziehub.herokuapp.com/users/techs/${personData.id}`, data, {
+      .put(`https://kenziehub.herokuapp.com/users/techs/${elem.id}`, data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
         console.log(response);
-        console.log("editou");
         closeModal();
       })
       .catch((error) => {
         console.log(error);
-        console.log("n editou");
       });
   };
-  function escIten(){
-    console.log(personData);
-    console.log(localStorage.getItem("token"));
+  function escIten() {
     axios
-      .delete(`https://kenziehub.herokuapp.com/users/techs/:${personData.id}`, {
+      .delete(`https://kenziehub.herokuapp.com/users/techs/${elem.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
         console.log(response);
         console.log("deletou");
+
         closeModal();
       })
       .catch((error) => {
@@ -51,28 +49,63 @@ const EditModal = ({ closeModal, personData }) => {
         console.log("n deletou");
       });
   }
+
   return (
-    <Divflex f="column">
-      <Divflex>
-        <h1>Tecnologia Detalhes</h1>
+    <Divflex f="column" bc="#000000" a="center" t="center">
+      <Divflex
+        bc="#343B41"
+        w="100%"
+        h="50px"
+        t="center"
+        a="center"
+        j="space-between"
+      >
+        <h3>Tecnologia Detalhes</h3>
         <button onClick={() => closeModal()}>X</button>
       </Divflex>
-      <Divflex f="column">
-        <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-          <h5>Nome do projeto</h5>
-          <input placeholder="Tecnologia" value={`${personData.title}`} {...register("title")} />
+      <Divflex f="column" a="center">
+        <Form
+          className="form"
+          onSubmit={handleSubmit(onSubmitFunction)}
+          w="300px"
+          f="column"
+          g="10px"
+          a="flex-start"
+          m="20px"
+        >
+          <span>Nome do projeto</span>
+          <input
+            placeholder="Tecnologia"
+            value={`${elem.title}`}
+            {...register("title")}
+          />
           {errors.title?.message}
-          <h5>Status</h5>
-          <div className="tipo">
-            <select value={`${personData.type}`}{...register("status")}>
-              <option>inciante</option>
-              <option>Intermediário</option>
-              <option>Avançado</option>
-            </select>
-          </div>
-          <button type="submit">Salvar alterações</button>
-        </form>
-        <button onClick={()=> escIten()}>Excluir</button>
+          <span>Status</span>
+
+          <select {...register("status")}>
+            <option value="inciante">inciante</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
+          </select>
+
+          <CurrentButton
+            type="submit"
+            bc="#59323F"
+            h="48px"
+            w="300px"
+            c="#fff"
+            br="4px"
+          >
+            Salvar alterações
+          </CurrentButton>
+        </Form>
+        <CurrentButton onClick={() => escIten()}             type="submit"
+            bc="#59323F"
+            h="48px"
+            w="300px"
+            c="#fff"
+            br="4px"
+            m="20px">Excluir</CurrentButton>
       </Divflex>
     </Divflex>
   );
