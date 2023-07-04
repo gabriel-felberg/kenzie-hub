@@ -1,4 +1,5 @@
 
+
 import "./App.css";
 import Routers from "./routes";
 import Modal from "react-modal";
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 import AddModal from "./components/Modal/AddMadal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+
 
 const customStyles = {
   content: {
@@ -21,6 +23,7 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 function App() {
+  
   const [objectData, setObjectData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [arrayTecnologi, setArrayTecnologi] = useState([]);
@@ -51,6 +54,7 @@ function App() {
     refreshTec();
   }, [objectData]);
 
+
   function openAddModal() {
     setOpenModal(true);
   }
@@ -72,6 +76,7 @@ function App() {
           refreshTec={refreshTec}
         />
 
+
         <Modal
           isOpen={openModal}
           onRequestClose={closeModal}
@@ -87,6 +92,7 @@ function App() {
         </Modal>
       </div>
 </div>
+
   );
 }
 

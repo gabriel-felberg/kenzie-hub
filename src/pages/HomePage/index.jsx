@@ -1,4 +1,3 @@
-
 import { useHistory } from "react-router";
 import Card from "../../components/Cards";
 
@@ -20,8 +19,6 @@ const customStyles = {
     color:"black",
   },
 };
-
-
 
 const HomePage = ({
   objectData,
@@ -103,4 +100,3 @@ const HomePage = ({
 };
 
 export default HomePage;
-

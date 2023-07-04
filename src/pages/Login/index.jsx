@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { toast, ToastContainer } from "react-toastify";
 
-
 import Logo from "../../img/Logo.svg";
 
 function Login({ setData }) {
@@ -55,7 +54,6 @@ function Login({ setData }) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-
         });
       })
       .catch((error) => {
@@ -70,12 +68,10 @@ function Login({ setData }) {
           progress: undefined,
         });
       });
-
   };
 
   return (
     <>
-
       <FlexHeader m="0px 20px">
         <img src={Logo} alt="Logo" />
       </FlexHeader>
@@ -129,7 +125,6 @@ function Login({ setData }) {
             Cadastre-se
           </CurrentButton>
         </Divflex>
-
         <ToastContainer
           position="bottom-center"
           autoClose={3000}
@@ -141,9 +136,7 @@ function Login({ setData }) {
           draggable
           pauseOnHover
         />
-
       </Divflex>
-
     </>
   );
 }

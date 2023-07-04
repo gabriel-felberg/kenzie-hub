@@ -5,9 +5,7 @@ import "../../App.css";
 
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-
 import { CurrentButton, FlexHeader, Form } from "./style";
-
 import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -30,7 +28,6 @@ function Cadastro() {
         /^[0-9a-zA-Z$*&@#]{6,}$/,
         "a senha deve ter no mínimo 6 caracteres"
       ),
-
 
     twopassword: yup
       .string()
@@ -83,7 +80,9 @@ function Cadastro() {
   return (
     <>
 
+
       <FlexHeader j="space-between" w="250px" m="30px">
+
 
         <img src={Logo} alt="Logo" />
 
@@ -103,7 +102,6 @@ function Cadastro() {
           m="20px"
         >
           <span>Nome</span>
-
           <input
             placeholder="Digite seu Nome"
             maxLength={18}
@@ -115,7 +113,6 @@ function Cadastro() {
           <input placeholder="Digite seu email" {...register("email")} />
           {errors.email?.message}
           <span>Senha</span>
-
           <input
             type="password"
             placeholder="Digite sua senha"
@@ -124,28 +121,23 @@ function Cadastro() {
           {errors.password?.message}
 
           <span>Confirmar Senha</span>
-
           <input
             type="password"
             placeholder="Digite novamente sua senha"
             {...register("twopassword")}
           />
           {errors.twopassword?.message}
-
           <span>Bio</span>
-
           <input
             type="text"
             placeholder="Fale sobre você"
             {...register("bio")}
           />
           {errors.bio?.message}
-
           <span>Contato</span>
           <input placeholder="Opção de contato" {...register("contact")} />
           {errors.contact?.message}
           <span>Selecionar módulo</span>
-
           <div className="tipo">
             <select {...register("course_module")}>
               <option value={"Primeiro módulo (Introdução ao Frontend)"}>
@@ -163,7 +155,6 @@ function Cadastro() {
             </select>
           </div>
           <div>
-
             <CurrentButton
               type="submit"
               bc="#59323F"
@@ -176,7 +167,6 @@ function Cadastro() {
             </CurrentButton>
           </div>
         </Form>
-
         <ToastContainer
           position="bottom-center"
           autoClose={3000}

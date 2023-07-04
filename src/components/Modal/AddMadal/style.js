@@ -10,7 +10,6 @@ export const LiCard = styled.li`
 
   width: ${(props) => props.w};
   height: ${(props) => props.h};
-
   background-color: ${(props) => props.bc};
 `;
 

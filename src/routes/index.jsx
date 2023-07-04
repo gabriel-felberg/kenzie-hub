@@ -31,7 +31,6 @@ function Routers({
           setIdTecnologi={setIdTecnologi}
           idTecnologi={idTecnologi}
         />
-
       </Route>
     </Switch>
   );

@@ -31,8 +31,7 @@ export const Divflex = styled.div`
 
   margin-bottom: ${(props) => props.mb};
   margin: ${(props) => props.m};
-
-
+  
   input{
     width:96%;
     height:38px;

@@ -10,6 +10,7 @@ const AddModal = ({
   arrayTecnologi,
   refreshTec,
 }) => {
+
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
   });
