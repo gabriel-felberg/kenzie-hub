@@ -1,5 +1,3 @@
-
-
 import { useHistory } from "react-router";
 import Card from "../../components/Cards";
 
@@ -8,7 +6,7 @@ import Logo from "../../img/Logo.svg";
 import EditModal from "../../components/Modal/EditModal";
 
 import Modal from "react-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const customStyles = {
   content: {
@@ -18,46 +16,84 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    color:"black",
   },
 };
 
-const HomePage = ({ objectData, openAddModal, closeModal }) => {
+const HomePage = ({
+  objectData,
+  openAddModal,
+  setArrayTecnologi,
+  arrayTecnologi,
+  setIdTecnologi,
+  idTecnologi,
+}) => {
   const history = useHistory();
-  console.log(objectData);
 
-  const [ editModal, setEditModal] = useState(false)
+  const [editModal, setEditModal] = useState(false);
 
-
-  function closeEditModal(){
-    setEditModal(false)
+  function closeEditModal() {
+    setEditModal(false);
   }
+  useEffect(() => {
+    setArrayTecnologi(objectData.techs);
+  }, []);
+
+  function esc() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    history.push("/");
+  }
+
+  const tech = arrayTecnologi?.find((elem) => {
+    return elem.id === idTecnologi;
+  });
+
   return (
     <>
-      <FlexHeader g="300px">
+      <FlexHeader g="40%" h="100px" j="center" w="100%" a="center">
         <img src={Logo} alt="Logo" />
-        <button onClick={() => history.push("/")}>Sair</button>
+        <button
+          onClick={() => {
+            esc();
+          }}
+        >
+          Sair
+        </button>
       </FlexHeader>
       <Divflex g="250px" a="center">
-        <h3>olá, {objectData.data.user.name}</h3>
-        <span>{objectData.data.user.course_module}</span>
+        <h3>olá, {objectData.name}</h3>
+        <span>{objectData.course_module}</span>
       </Divflex>
-      <Divflex f="column">
-        <Divflex j="center" g="400px">
-          <h2>Tecnologias</h2>
-          <button onClick={ () => openAddModal()}>+</button>
+      <Divflex f="column" g="30px" a="center">
+        <Divflex j="center" g="400px" a="center">
+          <h3>Tecnologias</h3>
+          <button onClick={() => openAddModal()}>+</button>
         </Divflex>
-        <ul>
-          <Card setEditModal={setEditModal}/>
-        </ul>
-        
-        <Modal
-          isOpen={editModal}
-          onRequestClose={closeEditModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <EditModal closeModal={closeEditModal}/>
-        </Modal>
+        <Divflex f="column" g="30px" w="80%">
+          {arrayTecnologi?.map((elem) => (
+            <>
+              <Card
+                key={elem.id}
+                setEditModal={setEditModal}
+                elem={elem}
+                setIdTecnologi={setIdTecnologi}
+              />
+            </>
+          ))}
+          <Modal
+            isOpen={editModal}
+            onRequestClose={closeEditModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <EditModal
+              closeModal={closeEditModal}
+              arrayTecnologi={arrayTecnologi}
+              elem={tech}
+            />
+          </Modal>
+        </Divflex>
       </Divflex>
     </>
   );

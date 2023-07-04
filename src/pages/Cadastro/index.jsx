@@ -5,7 +5,7 @@ import "../../App.css";
 
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { FlexHeader } from "./style";
+import { CurrentButton, FlexHeader, Form } from "./style";
 import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -20,7 +20,14 @@ function Cadastro() {
   const formSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     name: yup.string().required("Nome obrigatório"),
-    password: yup.string().required("Senha obrigatório"),
+
+    password: yup
+      .string()
+      .required("Senha obrigatório")
+      .matches(
+        /^[0-9a-zA-Z$*&@#]{6,}$/,
+        "a senha deve ter no mínimo 6 caracteres"
+      ),
 
     twopassword: yup
       .string()
@@ -40,7 +47,7 @@ function Cadastro() {
 
   const onSubmitFunction = (data) => {
     delete data.twopassword;
-    console.log(data)
+
     axios
       .post("https://kenziehub.herokuapp.com/users/", data)
       .then((response) => {
@@ -72,7 +79,11 @@ function Cadastro() {
 
   return (
     <>
-      <FlexHeader>
+
+
+      <FlexHeader j="space-between" w="250px" m="30px">
+
+
         <img src={Logo} alt="Logo" />
 
         <button onClick={() => history.push("/")}>Voltar</button>
@@ -80,45 +91,53 @@ function Cadastro() {
       <div className="container">
         <h3>Crie sua conta</h3>
         <span>Rápido e grátis, vamos nessa</span>
-        <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-          <h5>Nome</h5>
+
+        <Form
+          className="form"
+          onSubmit={handleSubmit(onSubmitFunction)}
+          w="300px"
+          f="column"
+          g="10px"
+          a="flex-start"
+          m="20px"
+        >
+          <span>Nome</span>
           <input
             placeholder="Digite seu Nome"
             maxLength={18}
             {...register("name")}
           />
           {errors.name?.message}
-          <h5>Email</h5>
+
+          <span>Email</span>
           <input placeholder="Digite seu email" {...register("email")} />
           {errors.email?.message}
-          <h5>Senha</h5>
+          <span>Senha</span>
           <input
             type="password"
             placeholder="Digite sua senha"
             {...register("password")}
           />
           {errors.password?.message}
-          <h5>Confirmar Senha</h5>
+
+          <span>Confirmar Senha</span>
           <input
             type="password"
             placeholder="Digite novamente sua senha"
             {...register("twopassword")}
           />
           {errors.twopassword?.message}
-          <h5>Bio</h5>
+          <span>Bio</span>
           <input
             type="text"
             placeholder="Fale sobre você"
             {...register("bio")}
           />
           {errors.bio?.message}
-          <h5>Contato</h5>
-          <input
-            placeholder="Opção de contato"
-            {...register("contact")}
-          />
+          <span>Contato</span>
+          <input placeholder="Opção de contato" {...register("contact")} />
           {errors.contact?.message}
-          <h5>Selecionar módulo</h5>
+          <span>Selecionar módulo</span>
           <div className="tipo">
             <select {...register("course_module")}>
               <option value={"Primeiro módulo (Introdução ao Frontend)"}>
@@ -136,9 +155,18 @@ function Cadastro() {
             </select>
           </div>
           <div>
-            <button type="submit">Cadastrar</button>
+            <CurrentButton
+              type="submit"
+              bc="#59323F"
+              h="48px"
+              w="300px"
+              c="#fff"
+              br="4px"
+            >
+              Cadastrar
+            </CurrentButton>
           </div>
-        </form>
+        </Form>
         <ToastContainer
           position="bottom-center"
           autoClose={3000}

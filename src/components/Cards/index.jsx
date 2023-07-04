@@ -1,16 +1,21 @@
-import React from 'react'
-import { LiCard } from './style'
 
-const Card = ({setEditModal}) => {
-  function openEditditAddModal(){
-    setEditModal(true)
+import React from "react";
+import { Divflex } from "./style";
+
+const Card = ({ setEditModal, elem, setIdTecnologi}) => {
+  function openEditditModal() {
+    setEditModal(true);
+    setIdTecnologi(elem.id)
   }
   return (
-    <LiCard g="300px" onClick={()=>openEditditAddModal()}>
-        <div>nome da tec</div>
-        <span>tipo de facilidade</span>
-    </LiCard>
-  )
-}
+    <Divflex j="space-between" onClick={() => openEditditModal()}>
 
-export default Card
+        <p>{elem.title}</p>
+
+        <span>{elem.status}</span>
+
+    </Divflex>
+  );
+};
+
+export default Card;

@@ -2,9 +2,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Divflex } from "../../../pages/HomePage/style";
+import { CurrentButton, Divflex, Form } from "./style";
 
-const AddModal = ({ closeModal }) => {
+const AddModal = ({
+  closeModal,
+  setArrayTecnologi,
+  arrayTecnologi,
+  refreshTec,
+}) => {
+
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
   });
@@ -18,33 +24,42 @@ const AddModal = ({ closeModal }) => {
   });
 
   const onSubmitFunction = (data) => {
-    console.log(localStorage.getItem("token"));
     axios
       .post("https://kenziehub.herokuapp.com/users/techs", data, {
-        headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
         console.log(response);
-        console.log("deu bom")
-        closeModal()
+        console.log("deu bom");
+        setArrayTecnologi([...arrayTecnologi, data]);
+        refreshTec();
+
+        closeModal();
       })
       .catch((error) => {
         console.log(error);
-        console.log("deu ruim")
       });
   };
   return (
-    <Divflex f="column">
-      <Divflex>
-        <h1>Cadastrar Tecnologia</h1>
+    <Divflex f="column" bc="#000000" a="center" t="center" >
+      <Divflex bc="#343B41" w="100%" h="50px" t="center" a="center" j="space-between">
+        <h3>Cadastrar Tecnologia</h3>
         <button onClick={() => closeModal()}>X</button>
       </Divflex>
       <Divflex f="column">
-        <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-          <h5>Nome</h5>
+        <Form
+          className="form"
+          onSubmit={handleSubmit(onSubmitFunction)}
+          w="300px"
+          f="column"
+          g="10px"
+          a="flex-start"
+          m="20px"
+        >
+          <span>Nome</span>
           <input placeholder="Tecnologia" {...register("title")} />
           {errors.title?.message}
-          <h5>Selecionar status</h5>
+          <span>Selecionar status</span>
           <div className="tipo">
             <select {...register("status")}>
               <option>inciante</option>
@@ -52,8 +67,17 @@ const AddModal = ({ closeModal }) => {
               <option>Avançado</option>
             </select>
           </div>
-          <button type="submit" >Cadastrar Tecnologia</button>
-        </form>
+          <CurrentButton
+            type="submit"
+            bc="#FF427F"
+            h="48px"
+            w="300px"
+            c="#fff"
+            br="4px"
+          >
+            Cadastrar Tecnologia
+          </CurrentButton>
+        </Form>
       </Divflex>
     </Divflex>
   );
