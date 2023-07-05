@@ -71,11 +71,11 @@ function Login({ setData }) {
   };
 
   return (
-    <>
-      <FlexHeader m="0px 20px">
-        <img src={Logo} alt="Logo" />
+    <div className="App-login">
+      <FlexHeader m="0px 20px" >
+        <img src={Logo} alt="Logo" width="500px" />
       </FlexHeader>
-      <Divflex f="column" w="80%" a="center" g="20px">
+      <Divflex f="column" w="30%" a="center" g="20px">
         <h3>Login</h3>
 
         <Form
@@ -87,16 +87,20 @@ function Login({ setData }) {
           
         >
           <Divflex f="column"a="flex-start">
-            <span>Email</span>
+            <Divflex g="30px" a="center">
+              <span>Email</span> 
+              <h6>{errors.email?.message}</h6>
+            </Divflex>
             <input placeholder="Digite seu email" {...register("email")} />
-            {errors.email?.message}
-            <span>Senha</span>
+            <Divflex g="30px" a="center">
+              <span>Senha</span> 
+              <h6>{errors.password?.message}</h6>
+            </Divflex>
             <input
               type="password"
               placeholder="Digite sua senha"
               {...register("password")}
             />
-            {errors.password?.message}
           </Divflex>
           <div>
             <CurrentButton
@@ -137,7 +141,7 @@ function Login({ setData }) {
           pauseOnHover
         />
       </Divflex>
-    </>
+    </div>
   );
 }
 

@@ -2,18 +2,16 @@
 import React from "react";
 import { Divflex } from "./style";
 
-const Card = ({ setEditModal, elem, setIdTecnologi}) => {
+const Card = ({ OpenAndCloseModal, elem, setIdTecnologi, setTypeObject}) => {
   function openEditditModal() {
-    setEditModal(true);
+    OpenAndCloseModal();
     setIdTecnologi(elem.id)
+    setTypeObject("Edit")
   }
   return (
-    <Divflex j="space-between" onClick={() => openEditditModal()}>
-
+    <Divflex j="space-between" pr="15px" onClick={() => openEditditModal()}>
         <p>{elem.title}</p>
-
         <span>{elem.status}</span>
-
     </Divflex>
   );
 };

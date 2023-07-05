@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { CurrentButton, Divflex, Form } from "./style";
 
 const AddModal = ({
-  closeModal,
+  OpenAndCloseModal,
   setArrayTecnologi,
   arrayTecnologi,
   refreshTec,
@@ -34,7 +34,7 @@ const AddModal = ({
         setArrayTecnologi([...arrayTecnologi, data]);
         refreshTec();
 
-        closeModal();
+        OpenAndCloseModal();
       })
       .catch((error) => {
         console.log(error);
@@ -42,9 +42,9 @@ const AddModal = ({
   };
   return (
     <Divflex f="column" bc="#000000" a="center" t="center" >
-      <Divflex bc="#343B41" w="100%" h="50px" t="center" a="center" j="space-between">
+      <Divflex bc="#343B41" w="100%" h="50px" t="center" a="center" j="center" g="110px">
         <h3>Cadastrar Tecnologia</h3>
-        <button onClick={() => closeModal()}>X</button>
+        <button onClick={() => OpenAndCloseModal()}>X</button>
       </Divflex>
       <Divflex f="column">
         <Form

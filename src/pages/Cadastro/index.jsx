@@ -5,7 +5,7 @@ import "../../App.css";
 
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { CurrentButton, FlexHeader, Form } from "./style";
+import { CurrentButton, Divflex, FlexHeader, Form } from "./style";
 import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -78,19 +78,14 @@ function Cadastro() {
   };
 
   return (
-    <>
-
-
-      <FlexHeader j="space-between" w="250px" m="30px">
-
-
-        <img src={Logo} alt="Logo" />
-
-        <button onClick={() => history.push("/")}>Voltar</button>
+    <Divflex className="App-register">
+      <FlexHeader j="center" w="25rem" m="30px" pt="80px">
+        <img src={Logo} alt="Logo" width="350px" />
+        {/* <button onClick={() => history.push("/")}>Voltar</button> */}
       </FlexHeader>
       <div className="container">
         <h3>Crie sua conta</h3>
-        <span>Rápido e grátis, vamos nessa</span>
+        <span>Rápido e grátis, vamos nessa?</span>
 
         <Form
           className="form"
@@ -101,43 +96,53 @@ function Cadastro() {
           a="flex-start"
           m="20px"
         >
-          <span>Nome</span>
+          <Divflex g="30px" a="center">
+            <span>Nome</span> 
+            <h6>{errors.name?.message}</h6>
+          </Divflex>
           <input
             placeholder="Digite seu Nome"
             maxLength={18}
             {...register("name")}
           />
-          {errors.name?.message}
-
-          <span>Email</span>
+          <Divflex g="30px" a="center">
+            <span>Email</span> 
+            <h6>{errors.email?.message}</h6>
+          </Divflex>
           <input placeholder="Digite seu email" {...register("email")} />
-          {errors.email?.message}
-          <span>Senha</span>
+          <Divflex g="30px" a="center">
+            <span>Senha</span> 
+            <h6>{errors.password?.message}</h6>
+          </Divflex>
           <input
             type="password"
             placeholder="Digite sua senha"
             {...register("password")}
           />
-          {errors.password?.message}
-
-          <span>Confirmar Senha</span>
+          <Divflex g="30px" a="center">
+            <span>Confirmar Senha</span> 
+            <h6>{errors.twopassword?.message}</h6>
+          </Divflex>
           <input
             type="password"
             placeholder="Digite novamente sua senha"
             {...register("twopassword")}
           />
-          {errors.twopassword?.message}
-          <span>Bio</span>
+          <Divflex g="20px">
+            <span>Bio</span> 
+            <h6>{errors.bio?.message}</h6>
+          </Divflex>
           <input
             type="text"
             placeholder="Fale sobre você"
             {...register("bio")}
           />
-          {errors.bio?.message}
-          <span>Contato</span>
+          <Divflex g="20px">
+            <span>Contato</span> 
+            <h6>{errors.contact?.message}</h6>
+          </Divflex>
           <input placeholder="Opção de contato" {...register("contact")} />
-          {errors.contact?.message}
-          <span>Selecionar módulo</span>
+          <span style={{width:"140px"}}>Selecionar módulo</span>
           <div className="tipo">
             <select {...register("course_module")}>
               <option value={"Primeiro módulo (Introdução ao Frontend)"}>
@@ -165,6 +170,9 @@ function Cadastro() {
             >
               Cadastrar
             </CurrentButton>
+            <span>
+              Já possue cadatro?, <a href="http://localhost:3000/">Login</a>
+            </span>
           </div>
         </Form>
         <ToastContainer
@@ -179,7 +187,7 @@ function Cadastro() {
           pauseOnHover
         />
       </div>
-    </>
+    </Divflex>
   );
 }
 

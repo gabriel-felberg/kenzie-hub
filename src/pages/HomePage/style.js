@@ -8,16 +8,33 @@ export const FlexHeader = styled.header`
   gap: ${(props) => props.g};
   text-align: ${(props) => props.t};
 
+  background-color: ${(props) => props.bc};
   width: ${(props) => props.w};
   height: ${(props) => props.h};
   button{
     border:none;
     color:white;
-    background-color:#282c34;
     margin:10px;
   }
 `;
+export const CurrentButton = styled.button`
+  text-align: ${(props) => props.t};
 
+  width: ${(props) => props.w};
+  height: ${(props) => props.h};
+
+  padding: ${(props) => props.p};
+  border: ${(props) => props.b};
+  border-radius: ${(props) => props.br};
+
+  background-color: ${(props) => props.bc};
+  color: ${(props) => props.c};
+
+  margin-bottom: ${(props) => props.mb};
+  margin: ${(props) => props.m};
+  @media (min-width: 768px) {
+  }
+`;
 export const Divflex = styled.div`
   display: flex;
   flex-direction: ${(props) => props.f};
@@ -33,15 +50,16 @@ export const Divflex = styled.div`
   height: ${(props) => props.h};
 
   padding: ${(props) => props.p};
+  padding-top: ${(props) => props.pt};
   border: ${(props) => props.b};
 
   margin-bottom: ${(props) => props.mb};
   margin: ${(props) => props.m};
+  margin-top: ${(props) => props.mt};
 
   button{
     border:none;
     color:white;
-    background-color:#282c34;
     margin:10px;
     font-size:20px;
   }
@@ -53,10 +71,16 @@ export const Divflex = styled.div`
     background-color: #343B41;
     color: #ffffff;
     margin:20px 0px;
+    outline: none!important;
   }
   span, select{
     font-size:15px;
     color:#F8F9FA;
+    outline: none!important;
+  }
+
+  hr{ 
+    width: 100%;
   }
 
   @media (min-width: 768px) {
@@ -88,6 +112,7 @@ export const Form = styled.form`
     background-color: #343B41;
     color: #ffffff;
     margin:20px 0px;
+    outline: none!important;
   }
   span{
     font-size:15px;

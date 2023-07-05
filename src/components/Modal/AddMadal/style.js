@@ -57,11 +57,13 @@ export const Divflex = styled.div`
     background-color: #343b41;
     color: #ffffff;
     margin: 20px 0px;
+    border-radius: 5px;
   }
   span,
   select {
     font-size: 15px;
     color: #f8f9fa;
+    border-radius: 5px;
   }
   h3{
     color:white;
@@ -70,7 +72,8 @@ export const Divflex = styled.div`
     border:none;
     color:white;
     background-color:#343b41;
-    margin:10px;
+    margin: 10px 0px 10px 0px;
+    border-radius: 5px;
   }
 
 `;
@@ -101,6 +104,8 @@ export const Form = styled.form`
     background-color: #343b41;
     color: #ffffff;
     margin: 20px 0px;
+    outline: none!important;
+    border-radius: 5px;
   }
   span {
     font-size: 15px;

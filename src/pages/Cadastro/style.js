@@ -10,6 +10,9 @@ export const FlexHeader = styled.header`
 
   width: ${(props) => props.w};
   height: ${(props) => props.h};
+
+  padding: ${(props) => props.p};
+  padding-top: ${(props) => props.pt};
 `;
 
 export const Divflex = styled.div`
@@ -54,16 +57,16 @@ export const Form = styled.form`
   justify-content: ${(props) => props.j};
   gap: ${(props) => props.g};
   text-align: ${(props) => props.t};
-
+  
   overflow-x: ${(props) => props.ox};
   overflow-y: ${(props) => props.oy};
-
+  
   width: ${(props) => props.w};
   height: ${(props) => props.h};
 
   padding: ${(props) => props.p};
   border: ${(props) => props.b};
-
+  
   margin-bottom: ${(props) => props.mb};
   margin: ${(props) => props.m};
   input, select{
@@ -72,11 +75,30 @@ export const Form = styled.form`
     border-color: 3px solid #ffffff;
     background-color: #343B41;
     color: #ffffff;
-    margin:20px 0px;
+    margin: 0px 0px 5px 0px;
+    padding: 0px 0px 0px 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    outline: none!important;
   }
-  span{
+  select {
+    width: 150px;
+  }
+  h6{
+    width: 160px;
+    font-size: 16px;
+    color: #FF427F;
+  }
+  span {
+    text-align: start;
+    width: 120px;
     font-size:15px;
+    font-weight: 700;
     color:#F8F9FA;
+  }
+  a {
+    text-decoration: none;
+    color: #FF427F;
   }
   @media (min-width: 768px) {
   }

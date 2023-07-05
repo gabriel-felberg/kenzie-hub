@@ -19,13 +19,47 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  gap:90px;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-register {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:50px;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-login {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px 0px;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+/* Estilize a thumb da barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background-color: #212529;
+  border-radius: 20px;
+  border: rgb(24, 24, 24) 1px solid;
+  width: 20px;
+}
+
+/* Estilos para o track da barra de rolagem */
+::-webkit-scrollbar {
+  width: 11px;
 }
 
 @keyframes App-logo-spin {

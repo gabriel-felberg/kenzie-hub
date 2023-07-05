@@ -38,7 +38,11 @@ export const Divflex = styled.div`
     border-color: 3px solid #ffffff;
     background-color: #343B41;
     color: #ffffff;
-    margin:20px 0px;
+    border-radius:5px;
+    margin:10px 0px 10px 0px;
+    padding: 0px 0px 0px 10px;
+    font-size: 15px;
+    outline: none!important;
   }
   span{
     font-size:15px;
@@ -67,6 +71,20 @@ export const Form = styled.form`
 
   margin-bottom: ${(props) => props.mb};
   margin: ${(props) => props.m};
+
+  h6{
+    width: 160px;
+    font-size: 16px;
+    color: #FF427F;
+  }
+  span {
+    text-align: start;
+    width: 120px;
+    font-size:15px;
+    font-weight: 700;
+    color:#F8F9FA;
+  }
+
   @media (min-width: 768px) {
   }
 `;

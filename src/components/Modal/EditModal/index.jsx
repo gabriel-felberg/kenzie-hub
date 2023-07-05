@@ -4,7 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { CurrentButton, Divflex, Form } from "./style";
 
-const EditModal = ({ closeModal, elem }) => {
+const EditModal = ({ OpenAndCloseModal, elem }) => {
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
   });
@@ -27,7 +27,7 @@ const EditModal = ({ closeModal, elem }) => {
       })
       .then((response) => {
         console.log(response);
-        closeModal();
+        OpenAndCloseModal();
       })
       .catch((error) => {
         console.log(error);
@@ -42,7 +42,7 @@ const EditModal = ({ closeModal, elem }) => {
         console.log(response);
         console.log("deletou");
 
-        closeModal();
+        OpenAndCloseModal();
       })
       .catch((error) => {
         console.log(error);
@@ -58,10 +58,11 @@ const EditModal = ({ closeModal, elem }) => {
         h="50px"
         t="center"
         a="center"
-        j="space-between"
+        j="center"
+        g="100px"
       >
         <h3>Tecnologia Detalhes</h3>
-        <button onClick={() => closeModal()}>X</button>
+        <button onClick={() => OpenAndCloseModal()}>X</button>
       </Divflex>
       <Divflex f="column" a="center">
         <Form
@@ -71,7 +72,7 @@ const EditModal = ({ closeModal, elem }) => {
           f="column"
           g="10px"
           a="flex-start"
-          m="20px"
+          m="20px 10px 20px 20px"
         >
           <span>Nome do projeto</span>
           <input
@@ -99,13 +100,18 @@ const EditModal = ({ closeModal, elem }) => {
             Salvar alterações
           </CurrentButton>
         </Form>
-        <CurrentButton onClick={() => escIten()}             type="submit"
-            bc="#59323F"
-            h="48px"
-            w="300px"
-            c="#fff"
-            br="4px"
-            m="20px">Excluir</CurrentButton>
+        <CurrentButton
+          onClick={() => escIten()}
+          type="submit"
+          bc="#59323F"
+          h="48px"
+          w="300px"
+          c="#fff"
+          br="4px"
+          m="20px"
+        >
+          Excluir
+        </CurrentButton>
       </Divflex>
     </Divflex>
   );

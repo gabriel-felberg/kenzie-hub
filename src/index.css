@@ -16,3 +16,22 @@ button{
   
   cursor: pointer;
 }
+
+/* Estilos para a barra de rolagem */
+/* Largura da barra de rolagem */
+/* Cores da thumb e do track da barra de rolagem */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Estilos para a thumb da barra de rolagem */
+body::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 20px;
+}
+
+/* Estilos para o track da barra de rolagem */
+body::-webkit-scrollbar-track {
+  background-color: orange;
+}

@@ -26,6 +26,7 @@ export const Divflex = styled.div`
   height: ${(props) => props.h};
 
   padding: ${(props) => props.p};
+  padding-right: ${(props) => props.pr};
   border: ${(props) => props.b};
 
   margin-bottom: ${(props) => props.mb};
