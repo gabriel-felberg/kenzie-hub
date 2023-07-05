@@ -65,7 +65,7 @@ const HomePage = ({
               +
             </CurrentButton>
           </Divflex>
-          <Divflex f="column" g="30px" w="80%" oy="auto" h="600px">
+          <Divflex f="column" g="30px" w="80%" oy="auto" h="470px">
             {arrayTecnologi?.map((elem) => (
               <>
                 <Card
